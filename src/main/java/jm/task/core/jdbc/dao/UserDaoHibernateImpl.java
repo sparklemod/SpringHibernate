@@ -2,7 +2,7 @@ package jm.task.core.jdbc.dao;
 
 import jm.task.core.jdbc.model.User;
 import jm.task.core.jdbc.service.LoggerService;
-import jm.task.core.jdbc.util.HibernateUtil;
+import jm.task.core.jdbc.util.Util;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
@@ -11,7 +11,7 @@ import java.util.List;
 
 public class UserDaoHibernateImpl implements UserDao {
     private final LoggerService logger = new LoggerService(UserDaoHibernateImpl.class);
-    private final SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
+    private final SessionFactory sessionFactory = Util.getSessionFactory();
 
     public UserDaoHibernateImpl() {
 
