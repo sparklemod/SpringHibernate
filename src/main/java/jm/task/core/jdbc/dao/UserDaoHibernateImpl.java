@@ -10,7 +10,7 @@ import org.hibernate.Transaction;
 import java.util.List;
 
 public class UserDaoHibernateImpl implements UserDao {
-    private final LoggerService logger = new LoggerService(UserDaoHibernateImpl.class);
+    private static final LoggerService logger = new LoggerService(UserDaoHibernateImpl.class);
     private final SessionFactory sessionFactory = Util.getSessionFactory();
 
     public UserDaoHibernateImpl() {
@@ -54,7 +54,7 @@ public class UserDaoHibernateImpl implements UserDao {
             User user = new User(name, lastName, age);
             session.save(user);
             transaction.commit();
-            System.out.println("Пользователь с именем - " + name + " добавлен в базу данных");
+            logger.logInfo("Пользователь с именем - " + name + " добавлен в базу данных");
         } catch (Exception e) {
             logger.logError("Ошибка при сохранении записи", e);
         }

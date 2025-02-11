@@ -1,9 +1,12 @@
 package jm.task.core.jdbc;
 
+import jm.task.core.jdbc.dao.UserDaoHibernateImpl;
 import jm.task.core.jdbc.model.User;
 import jm.task.core.jdbc.service.*;
 
 public class Main {
+    private static final LoggerService logger = new LoggerService(UserDaoHibernateImpl.class);
+
     public static void main(String[] args) {
 
         UserService userService = new UserServiceImpl();
@@ -16,7 +19,7 @@ public class Main {
         userService.saveUser("Иван", "Иванов", (byte) 39);
 
         for (User user : userService.getAllUsers()) {
-            System.out.println(user);
+            logger.logInfo(user.toString());
         }
 
         userService.cleanUsersTable();

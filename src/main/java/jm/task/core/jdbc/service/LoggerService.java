@@ -16,7 +16,7 @@ public class LoggerService {
         try {
             LogManager.getLogManager().readConfiguration(Files.newInputStream(PATH));
         } catch (IOException e) {
-            System.err.println("Ошибка при загрузке конфигурации логгера: " + e.getMessage());
+            throw new RuntimeException("Ошибка при загрузке конфигурации логгера: " + e.getMessage());
         }
     }
 
@@ -28,7 +28,15 @@ public class LoggerService {
         try {
             logger.log(Level.SEVERE, message, throwable);
         } catch (Exception e) {
-            System.err.println("Ошибка при логировании: " + e.getMessage());
+            throw new RuntimeException("Ошибка при логировании: " + e.getMessage());
+        }
+    }
+
+    public void logInfo(String message) {
+        try {
+            logger.log(Level.INFO, message);
+        } catch (Exception e) {
+            throw new RuntimeException("Ошибка при логировании: " + e.getMessage());
         }
     }
 }
